@@ -4,39 +4,33 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-type GalleryImage = { src: string; alt: string; category: string };
+type GalleryImage = {
+  id: string;
+  url: string;
+  alt: string;
+  category: string;
+};
 
-const galleryImages: GalleryImage[] = [
-  { src: "https://images.unsplash.com/photo-1518982380512-5a3b2f480027?w=800", alt: "Guangzhou skyline", category: "City" },
-  { src: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800", alt: "Guangzhou market", category: "Markets" },
-  { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800", alt: "Group tour", category: "Tours" },
-  { src: "https://images.unsplash.com/photo-1526958097901-5e6d742d3371?w=800", alt: "Wholesale shopping", category: "Shopping" },
-  { src: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=800", alt: "Market stalls", category: "Markets" },
-  { src: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800", alt: "China street food", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1569163139599-0f4517e36f51?w=800", alt: "Hotel lobby", category: "Hotel" },
-  { src: "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?w=800", alt: "Group at market", category: "Tours" },
-  { src: "https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?w=800", alt: "Electronics market", category: "Markets" },
-  { src: "https://images.unsplash.com/photo-1581453936558-1d20c1e5a3d8?w=800", alt: "Guangzhou food", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800", alt: "Business meeting", category: "Tours" },
-  { src: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800", alt: "Shopping bags", category: "Shopping" },
-];
-
-const FILTERS = ["All", "Markets", "Tours", "Shopping", "Food", "Hotel", "City"];
-
-export default function GalleryGrid() {
+export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
   const [active, setActive] = useState("All");
+
+  // Build the filter list from the categories actually present in the data.
+  const filters = [
+    "All",
+    ...Array.from(new Set(images.map((img) => img.category))),
+  ];
 
   const filtered =
     active === "All"
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === active);
+      ? images
+      : images.filter((img) => img.category === active);
 
   return (
     <section className="bg-gray-50 py-20 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Filter buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {FILTERS.map((f) => (
+          {filters.map((f) => (
             <button
               key={f}
               type="button"
@@ -57,7 +51,7 @@ export default function GalleryGrid() {
           <AnimatePresence mode="popLayout">
             {filtered.map((img) => (
               <motion.div
-                key={img.src}
+                key={img.id}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -66,7 +60,7 @@ export default function GalleryGrid() {
                 className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform"
               >
                 <Image
-                  src={img.src}
+                  src={img.url}
                   alt={img.alt}
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
