@@ -26,7 +26,7 @@ model ContactInfo {
 
 model Package {
   id         String   @id @default(cuid())
-  duration   Int
+  duration   Int      @unique
   title      String
   price      String
   isPopular  Boolean  @default(false)
