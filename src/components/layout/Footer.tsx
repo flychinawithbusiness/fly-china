@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getContactInfo, digitsOnly } from "@/lib/contact";
 
 const QUICK_LINKS = [
   { label: "Home", href: "/" },
@@ -11,7 +12,13 @@ const QUICK_LINKS = [
 
 const TOURS = ["7 Day Tour", "10 Day Tour", "14 Day Tour", "Custom Tours"];
 
-export default function Footer() {
+export default async function Footer() {
+  const { get } = await getContactInfo();
+  const phone = get("phone");
+  const whatsapp = get("whatsapp");
+  const wechat = get("wechat");
+  const email = get("email");
+
   return (
     <footer className="bg-[#0A1628] text-gray-400">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-6 py-16">
@@ -50,10 +57,32 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">Contact</h4>
           <ul className="space-y-2 text-sm">
-            <li>📞 Phone: +880 1XXX-XXXXXX</li>
-            <li>💬 WhatsApp: +880 1XXX-XXXXXX</li>
-            <li>💬 WeChat: flychina_official</li>
-            <li>✉️ info@flychina.com</li>
+            {phone && <li>📞 Phone: {phone}</li>}
+            {whatsapp && (
+              <li>
+                💬 WhatsApp:{" "}
+                <a
+                  href={`https://wa.me/${digitsOnly(whatsapp)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#F5C200] transition-colors"
+                >
+                  {whatsapp}
+                </a>
+              </li>
+            )}
+            {wechat && <li>💬 WeChat: {wechat}</li>}
+            {email && (
+              <li>
+                ✉️{" "}
+                <a
+                  href={`mailto:${email}`}
+                  className="hover:text-[#F5C200] transition-colors"
+                >
+                  {email}
+                </a>
+              </li>
+            )}
           </ul>
         </div>
 

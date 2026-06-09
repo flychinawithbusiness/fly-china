@@ -1,12 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 
 export default function SiteShell({
+  navbar,
+  footer,
   children,
 }: {
+  navbar: React.ReactNode;
+  footer: React.ReactNode;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -19,9 +21,9 @@ export default function SiteShell({
 
   return (
     <>
-      <Navbar />
+      {navbar}
       {children}
-      <Footer />
+      {footer}
     </>
   );
 }

@@ -3,13 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
-import { posts, getPost } from "@/lib/blog";
+import { getPost } from "@/lib/blog";
 
 type Params = { slug: string };
 
-export function generateStaticParams(): Params[] {
-  return posts.map((post) => ({ slug: post.slug }));
-}
+// Rendered dynamically (the global footer reads contact info from the DB).
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

@@ -9,5 +9,7 @@ export async function updateContactInfo(key: string, value: string) {
     data: { value },
   });
   revalidatePath("/admin/contact-info");
+  // Contact info appears in the footer (on every page), the contact page, and CTAs.
+  revalidatePath("/", "layout");
   return { success: true };
 }

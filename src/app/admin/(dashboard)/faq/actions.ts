@@ -14,6 +14,7 @@ export async function createFaq(question: string, answer: string) {
     data: { question, answer, order: nextOrder },
   });
   revalidatePath("/admin/faq");
+  revalidatePath("/faq");
   return { success: true };
 }
 
@@ -23,12 +24,14 @@ export async function updateFaq(id: string, question: string, answer: string) {
     data: { question, answer },
   });
   revalidatePath("/admin/faq");
+  revalidatePath("/faq");
   return { success: true };
 }
 
 export async function deleteFaq(id: string) {
   await prisma.faq.delete({ where: { id } });
   revalidatePath("/admin/faq");
+  revalidatePath("/faq");
   return { success: true };
 }
 
@@ -38,5 +41,6 @@ export async function reorderFaq(id: string, newOrder: number) {
     data: { order: newOrder },
   });
   revalidatePath("/admin/faq");
+  revalidatePath("/faq");
   return { success: true };
 }

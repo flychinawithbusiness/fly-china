@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { submitInquiry } from "@/app/contact/actions";
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
@@ -38,6 +39,7 @@ export default function InquiryForm() {
   const [data, setData] = useState<FormData>(EMPTY);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   function update<K extends keyof FormData>(key: K, value: FormData[K]) {
     setData((d) => ({ ...d, [key]: value }));
@@ -45,11 +47,25 @@ export default function InquiryForm() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError(null);
     setLoading(true);
-    // Simulated submit — real email sending wired up later (e.g. Resend).
-    await new Promise((res) => setTimeout(res, 1500));
-    setLoading(false);
-    setSuccess(true);
+    try {
+      await submitInquiry({
+        name: data.fullName,
+        country: data.country,
+        whatsapp: data.phone,
+        email: data.email || undefined,
+        duration: data.duration,
+        month: data.month,
+        groupSize: data.people,
+        message: data.message || undefined,
+      });
+      setSuccess(true);
+    } catch {
+      setError("Something went wrong. Please try again or contact us directly.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (success) {
@@ -65,6 +81,7 @@ export default function InquiryForm() {
           onClick={() => {
             setData(EMPTY);
             setSuccess(false);
+            setError(null);
           }}
           className="bg-[#1C3A6B] text-white rounded-full px-6 py-3 font-semibold hover:bg-[#2A5099] transition"
         >
@@ -80,6 +97,11 @@ export default function InquiryForm() {
         Send an Inquiry
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <div className="bg-red-50 text-red-600 text-sm rounded-xl px-4 py-3">
+            {error}
+          </div>
+        )}
         <div>
           <label className={labelClass} htmlFor="fullName">
             Full Name *

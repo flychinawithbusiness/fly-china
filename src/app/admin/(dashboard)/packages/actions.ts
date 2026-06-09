@@ -17,6 +17,7 @@ export async function updatePackage(id: string, data: Partial<PackageData>) {
     data,
   });
   revalidatePath("/admin/packages");
+  revalidatePath("/packages");
   return { success: true };
 }
 
@@ -29,6 +30,7 @@ export async function addInclusion(id: string, item: string) {
     data: { inclusions: [...pkg.inclusions, item] },
   });
   revalidatePath("/admin/packages");
+  revalidatePath("/packages");
   return { success: true };
 }
 
@@ -41,5 +43,6 @@ export async function removeInclusion(id: string, item: string) {
     data: { inclusions: pkg.inclusions.filter((i) => i !== item) },
   });
   revalidatePath("/admin/packages");
+  revalidatePath("/packages");
   return { success: true };
 }
