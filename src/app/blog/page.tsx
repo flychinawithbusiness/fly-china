@@ -5,7 +5,8 @@ import PageHero from "@/components/ui/PageHero";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-  title: "Blog | Fly China - China Sourcing Tips",
+  title: "Blog - China Sourcing Tips",
+  description: "Guides and tips for buying from China's wholesale markets.",
 };
 
 function formatDate(date: Date) {

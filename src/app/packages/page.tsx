@@ -4,7 +4,11 @@ import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 import { prisma } from "@/lib/prisma";
 
-export const metadata: Metadata = { title: "Tour Packages | Fly China" };
+export const metadata: Metadata = {
+  title: "Tour Packages",
+  description:
+    "Compare our 7, 10 and 14-day Guangzhou sourcing tour packages. Return flights, hotel, all meals, local transport and a dedicated guide — all inclusive.",
+};
 
 const NOT_INCLUDED = [
   "Visa fees",

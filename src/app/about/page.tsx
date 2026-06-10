@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 
-export const metadata: Metadata = { title: "About Us | Fly China" };
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Learn about Fly China - your trusted partner for wholesale sourcing tours to Guangzhou's markets.",
+};
 
 const STATS = [
   { value: "500+", label: "Happy Clients" },

@@ -3,7 +3,11 @@ import PageHero from "@/components/ui/PageHero";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
 import { prisma } from "@/lib/prisma";
 
-export const metadata: Metadata = { title: "Gallery | Fly China" };
+export const metadata: Metadata = {
+  title: "Tour Gallery",
+  description:
+    "Photos from our wholesale sourcing tours to Guangzhou, China.",
+};
 
 export default async function GalleryPage() {
   const images = await prisma.galleryImage.findMany({

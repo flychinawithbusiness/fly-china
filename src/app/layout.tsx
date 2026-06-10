@@ -12,9 +12,34 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Fly China | Wholesale Tours to Guangzhou",
+  metadataBase: new URL("https://fly-china.vercel.app"),
+  title: {
+    default: "Fly China | Wholesale Sourcing Tours to Guangzhou",
+    template: "%s | Fly China",
+  },
   description:
-    "7, 10 and 14 day wholesale sourcing tours to Guangzhou China. Flights, hotel, food, transport and guide all included.",
+    "7, 10 and 14-day wholesale sourcing tours to Guangzhou, China. Return flights, hotel, food, transport and dedicated guide all included. Serving Bangladesh and worldwide.",
+  keywords: [
+    "China tour",
+    "Guangzhou wholesale market",
+    "sourcing trip China",
+    "wholesale buying tour",
+    "Guangzhou tour Bangladesh",
+    "China business tour",
+  ],
+  openGraph: {
+    title: "Fly China | Wholesale Sourcing Tours to Guangzhou",
+    description:
+      "Your complete guided sourcing trip to Guangzhou's wholesale markets.",
+    url: "https://fly-china.vercel.app",
+    siteName: "Fly China",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 // The footer (and several pages) read contact info, FAQs, and packages from the

@@ -3,7 +3,11 @@ import PageHero from "@/components/ui/PageHero";
 import FaqAccordion from "@/components/faq/FaqAccordion";
 import { prisma } from "@/lib/prisma";
 
-export const metadata: Metadata = { title: "FAQ | Fly China" };
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions",
+  description:
+    "Answers to common questions about our wholesale sourcing tours to Guangzhou, China.",
+};
 
 export default async function FaqPage() {
   const faqs = await prisma.faq.findMany({

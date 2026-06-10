@@ -3,7 +3,11 @@ import PageHero from "@/components/ui/PageHero";
 import InquiryForm from "@/components/contact/InquiryForm";
 import { getContactInfo, digitsOnly } from "@/lib/contact";
 
-export const metadata: Metadata = { title: "Contact & Inquiry | Fly China" };
+export const metadata: Metadata = {
+  title: "Book a Tour",
+  description:
+    "Book your wholesale sourcing trip to Guangzhou. Fill out our inquiry form and we will contact you within 24 hours.",
+};
 
 export default async function ContactPage() {
   const { get } = await getContactInfo();

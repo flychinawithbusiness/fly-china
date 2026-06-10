@@ -3,7 +3,7 @@ import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 
 export const metadata: Metadata = {
-  title: "Guangzhou Wholesale Markets Guide | Fly China",
+  title: "Guangzhou Wholesale Markets Guide",
   description:
     "Complete guide to Guangzhou's best wholesale markets for business buyers.",
 };
