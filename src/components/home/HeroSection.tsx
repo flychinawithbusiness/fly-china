@@ -7,213 +7,264 @@ export default function HeroSection() {
   return (
     <section
       style={{
-        background:
-          "linear-gradient(180deg, #04080F 0%, #0A1628 50%, #0D1F3C 100%)",
         height: "100vh",
         minHeight: 600,
         position: "relative",
         overflow: "hidden",
+        background: "#020B18",
       }}
     >
-      {/* Cloud layer 1 - slow, behind plane */}
+      {/* DRAMATIC SKY BACKGROUND */}
       <div
         style={{
           position: "absolute",
-          bottom: "5%",
-          left: 0,
-          width: "200%",
-          height: "40%",
-          backgroundImage:
-            "radial-gradient(ellipse 300px 80px at 25% 50%, rgba(255,255,255,0.04) 0%, transparent 70%), radial-gradient(ellipse 200px 60px at 75% 60%, rgba(255,255,255,0.03) 0%, transparent 70%)",
-          backgroundSize: "800px 100%",
-          animation: "cloudMove 40s linear infinite",
-          zIndex: 1,
+          inset: 0,
+          zIndex: 0,
         }}
-      />
+      >
+        <Image
+          src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1920&q=80"
+          alt="Sky"
+          fill
+          className="object-cover"
+          style={{ opacity: 0.5 }}
+          priority
+        />
+        {/* Dark overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(2,11,24,0.3) 0%, rgba(2,11,24,0.5) 50%, rgba(2,11,24,0.85) 100%)",
+          }}
+        />
+      </div>
 
-      {/* Cloud layer 2 - faster, foreground */}
+      {/* HUGE BACKGROUND TEXT — behind plane */}
       <div
         style={{
           position: "absolute",
-          bottom: "15%",
-          left: 0,
-          width: "200%",
-          height: "30%",
-          backgroundImage:
-            "radial-gradient(ellipse 400px 100px at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 70%), radial-gradient(ellipse 250px 70px at 65% 40%, rgba(255,255,255,0.04) 0%, transparent 70%)",
-          backgroundSize: "1000px 100%",
-          animation: "cloudMove 25s linear infinite",
-          zIndex: 5,
+          inset: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 2,
+          pointerEvents: "none",
+          userSelect: "none",
         }}
-      />
+      >
+        <div
+          style={{
+            fontFamily: "var(--font-display)",
+            textAlign: "center",
+            lineHeight: 0.85,
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "clamp(5rem, 16vw, 16rem)",
+              color: "rgba(255,255,255,0.06)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            EXPLORE
+          </div>
+          <div
+            style={{
+              fontSize: "clamp(6rem, 20vw, 20rem)",
+              color: "rgba(255,255,255,0.08)",
+              letterSpacing: "-0.02em",
+              marginTop: "-0.1em",
+            }}
+          >
+            FLY CHINA
+          </div>
+          <div
+            style={{
+              fontSize: "clamp(3rem, 10vw, 10rem)",
+              color: "rgba(245,194,0,0.12)",
+              letterSpacing: "0.05em",
+              marginTop: "-0.1em",
+            }}
+          >
+            BUSINESS MARKETS
+          </div>
+        </div>
+      </div>
 
-      {/* Plane */}
+      {/* PLANE — in front of background text, behind foreground text */}
       <motion.div
-        initial={{ x: -300, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1.4, ease: "easeOut" }}
+        initial={{ x: "-120%", opacity: 0 }}
+        animate={{ x: "0%", opacity: 1 }}
+        transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           position: "absolute",
-          bottom: "5%",
-          left: "-8%",
-          width: "72%",
+          bottom: "0%",
+          left: "-10%",
+          width: "85%",
           zIndex: 10,
         }}
       >
         <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, -18, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         >
           <Image
             src="/images/plane.png"
             alt="China Southern Airlines"
-            width={1100}
-            height={620}
+            width={1400}
+            height={800}
             className="object-contain w-full h-auto"
             priority
           />
         </motion.div>
       </motion.div>
 
-      {/* Text - right side */}
+      {/* FOREGROUND TEXT — in front of plane */}
       <div
         style={{
           position: "absolute",
-          right: "4%",
-          top: "50%",
-          transform: "translateY(-50%)",
-          textAlign: "right",
+          inset: 0,
           zIndex: 20,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          paddingRight: "5%",
           paddingTop: "5rem",
+          pointerEvents: "none",
         }}
       >
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          style={{
-            fontSize: "0.65rem",
-            letterSpacing: "0.2em",
-            color: "#F5C200",
-            textTransform: "uppercase",
-            marginBottom: "1rem",
-            fontFamily: "var(--font-body)",
-          }}
-        >
-          CHINA WHOLESALE MARKET TOURS
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, duration: 0.9 }}
-          style={{
-            fontFamily: "var(--font-display)",
-            lineHeight: 0.88,
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          <span
-            style={{
-              display: "block",
-              fontSize: "clamp(3.5rem, 8vw, 7rem)",
-              color: "rgba(255,255,255,0.15)",
-            }}
-          >
-            EXPLORE
-          </span>
-          <span
-            style={{
-              display: "block",
-              fontSize: "clamp(4.5rem, 10vw, 9.5rem)",
-              color: "#ffffff",
-            }}
-          >
-            CHINA
-          </span>
-          <span
-            style={{
-              display: "block",
-              fontSize: "clamp(3rem, 7vw, 6.5rem)",
-              color: "#F5C200",
-            }}
-          >
-            BUSINESS
-          </span>
-          <span
-            style={{
-              display: "block",
-              fontSize: "clamp(2.5rem, 6vw, 5rem)",
-              color: "rgba(255,255,255,0.4)",
-            }}
-          >
-            MARKETS
-          </span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.0 }}
-          style={{
-            color: "rgba(255,255,255,0.45)",
-            fontSize: "0.85rem",
-            maxWidth: 300,
-            marginLeft: "auto",
-            lineHeight: 1.7,
-            marginTop: "1.5rem",
-            marginBottom: "2rem",
-            fontFamily: "var(--font-body)",
-          }}
-        >
-          Explore the China business markets with us. Flights, hotels, transport
-          &amp; personal guide — all handled.
-        </motion.p>
-
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          style={{
-            display: "flex",
-            gap: 10,
-            justifyContent: "flex-end",
-            flexWrap: "wrap",
-          }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          style={{ textAlign: "right" }}
         >
-          <a
-            href="/packages"
+          <p
             style={{
-              padding: "0.65rem 1.5rem",
-              borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.25)",
-              color: "white",
-              fontSize: "0.8rem",
-              fontWeight: 500,
-              textDecoration: "none",
+              fontSize: "0.65rem",
+              letterSpacing: "0.25em",
+              color: "#F5C200",
+              textTransform: "uppercase",
+              marginBottom: "0.75rem",
               fontFamily: "var(--font-body)",
             }}
           >
-            Explore Packages
-          </a>
-          <a
-            href="/contact"
+            China Wholesale Market Tours
+          </p>
+
+          <h1
             style={{
-              padding: "0.65rem 1.5rem",
-              borderRadius: 999,
-              background: "#F5C200",
-              color: "#0A1628",
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              textDecoration: "none",
+              fontFamily: "var(--font-display)",
+              lineHeight: 0.88,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(3rem, 6vw, 6rem)",
+                color: "rgba(255,255,255,0.9)",
+              }}
+            >
+              EXPLORE THE
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(3.5rem, 7vw, 7rem)",
+                color: "#F5C200",
+              }}
+            >
+              CHINA BUSINESS
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(2.5rem, 5vw, 5rem)",
+                color: "rgba(255,255,255,0.5)",
+              }}
+            >
+              MARKETS WITH US
+            </span>
+          </h1>
+
+          <p
+            style={{
+              color: "rgba(255,255,255,0.4)",
+              fontSize: "0.85rem",
+              maxWidth: 280,
+              marginLeft: "auto",
+              lineHeight: 1.7,
+              marginTop: "1.25rem",
+              marginBottom: "1.75rem",
               fontFamily: "var(--font-body)",
             }}
           >
-            Book a Tour ✈
-          </a>
+            Flights, hotels, food, transport &amp; personal guide — all handled.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 10,
+              justifyContent: "flex-end",
+              pointerEvents: "all",
+            }}
+          >
+            <a
+              href="/packages"
+              style={{
+                padding: "0.65rem 1.5rem",
+                borderRadius: 999,
+                border: "1px solid rgba(255,255,255,0.2)",
+                color: "white",
+                fontSize: "0.8rem",
+                fontWeight: 500,
+                textDecoration: "none",
+                fontFamily: "var(--font-body)",
+                backdropFilter: "blur(8px)",
+                background: "rgba(255,255,255,0.05)",
+              }}
+            >
+              Explore Packages
+            </a>
+            <a
+              href="/contact"
+              style={{
+                padding: "0.65rem 1.5rem",
+                borderRadius: 999,
+                background: "#F5C200",
+                color: "#020B18",
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                textDecoration: "none",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              Book a Tour ✈
+            </a>
+          </div>
         </motion.div>
       </div>
+
+      {/* BOTTOM GRADIENT FADE */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "25%",
+          background: "linear-gradient(transparent, #020B18)",
+          zIndex: 15,
+          pointerEvents: "none",
+        }}
+      />
     </section>
   );
 }
