@@ -3,6 +3,9 @@ import type { NextAuthConfig } from "next-auth";
 // Edge-safe config — NO Prisma, NO bcrypt. Used by middleware (Edge runtime)
 // and spread into the full config in auth.ts.
 export const authConfig: NextAuthConfig = {
+  // Trust the deployment host (Vercel preview/prod URLs, custom domains, and
+  // `next start`). Prevents NextAuth v5 "UntrustedHost" errors.
+  trustHost: true,
   pages: {
     signIn: "/admin/login",
   },
