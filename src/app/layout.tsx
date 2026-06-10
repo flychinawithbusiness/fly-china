@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/layout/SiteShell";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+const cormorant = Cormorant_Garamond({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-cormorant",
+  style: ["normal", "italic"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  style: ["normal", "italic"],
 });
 
 const dmSans = DM_Sans({
@@ -64,7 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dmSans.variable}`}
+      className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable}`}
     >
       <body className="min-h-screen flex flex-col font-sans">
         <SiteShell navbar={<Navbar />} footer={<Footer />}>

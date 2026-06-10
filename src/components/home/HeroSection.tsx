@@ -44,7 +44,7 @@ export default function HeroSection() {
         <div
           style={{
             textAlign: "center",
-            marginTop: "-18rem",
+            marginTop: "-6rem",
           }}
         >
           <p
@@ -61,49 +61,40 @@ export default function HeroSection() {
             China Wholesale Market Tours
           </p>
 
-          <h1 style={{ margin: 0, padding: 0, lineHeight: 1 }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(3rem, 8vw, 6.5rem)",
-                fontWeight: 300,
-                color: "#6B7280",
-                letterSpacing: "-0.04em",
-                fontFamily: "var(--font-display)",
-              }}
-            >
-              Explore.
-            </span>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(3rem, 8vw, 6.5rem)",
-                fontWeight: 300,
-                color: "#1C3A6B",
-                letterSpacing: "-0.04em",
-                marginTop: "-10px",
-                fontFamily: "var(--font-display)",
-              }}
-            >
-              China.
-            </span>
+          <h1
+            style={{
+              margin: 0,
+              padding: 0,
+              fontFamily: "var(--font-cormorant)",
+              fontWeight: 700,
+              fontStyle: "italic",
+              fontSize: "clamp(3.5rem, 8vw, 7.5rem)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.02em",
+              color: "#1C3A6B",
+              maxWidth: 700,
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            Explore the China
+            <br />
+            Business Markets
+            <br />
+            <span style={{ color: "#F5C200" }}>with Us.</span>
           </h1>
 
           <p
             style={{
-              fontSize: "1rem",
+              fontSize: "0.95rem",
               color: "#4B5563",
               marginTop: "1.25rem",
               marginBottom: "1.75rem",
-              maxWidth: 500,
-              marginLeft: "auto",
-              marginRight: "auto",
-              lineHeight: 1.65,
               fontFamily: "var(--font-body)",
+              letterSpacing: "0.01em",
             }}
           >
-            Explore the China business markets with us. Flights, hotel, food,
-            transport &amp; guide — all included.
+            Flights, hotel, food, transport &amp; guide — all included.
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", gap: 14 }}>
@@ -112,14 +103,14 @@ export default function HeroSection() {
               style={{
                 padding: "0.6rem 1.5rem",
                 borderRadius: 999,
-                background: "#E5E7EB",
-                color: "#1F2937",
-                fontWeight: 500,
+                background: "#F5C200",
+                color: "#111827",
+                fontWeight: 700,
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 fontFamily: "var(--font-body)",
               }}
-              className="hover:bg-gray-300 transition-colors"
+              className="hover:bg-yellow-400 transition-colors"
             >
               Explore Packages
             </Link>
@@ -130,7 +121,7 @@ export default function HeroSection() {
                 padding: "0.6rem 1.5rem",
                 borderRadius: 999,
                 background: "#1C3A6B",
-                color: "#fff",
+                color: "#ffffff",
                 fontWeight: 600,
                 textDecoration: "none",
                 fontSize: "0.85rem",

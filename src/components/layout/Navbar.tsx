@@ -36,10 +36,18 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0A1628]/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+        scrolled ? "bg-[#0A1628]/95 backdrop-blur-md shadow-sm" : ""
       }`}
+      style={
+        scrolled
+          ? undefined
+          : {
+              background: "rgba(255,255,255,0.15)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+            }
+      }
     >
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
@@ -47,8 +55,8 @@ export default function Navbar() {
           <Image
             src="/images/logo.png"
             alt="Fly China"
-            width={52}
-            height={52}
+            width={72}
+            height={72}
             className="rounded-lg"
             priority
           />
