@@ -14,11 +14,15 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fly-china.vercel.app"),
   title: {
-    default: "Fly China | Wholesale Sourcing Tours to Guangzhou",
+    default: "Fly China | China Business Market Tours",
     template: "%s | Fly China",
   },
   description:
-    "7, 10 and 14-day wholesale sourcing tours to Guangzhou, China. Return flights, hotel, food, transport and dedicated guide all included. Serving Bangladesh and worldwide.",
+    "Join guided business tours to China's wholesale markets. 7, 10 and 14 day packages from Bangladesh. Flights, hotel, food, transport and guide included.",
+  icons: {
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
   keywords: [
     "China tour",
     "Guangzhou wholesale market",
