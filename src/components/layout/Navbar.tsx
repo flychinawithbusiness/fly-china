@@ -55,8 +55,8 @@ export default function Navbar() {
           <Image
             src="/images/logo.png"
             alt="Fly China"
-            width={72}
-            height={72}
+            width={48}
+            height={48}
             className="rounded-lg"
             priority
           />

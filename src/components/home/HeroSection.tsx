@@ -44,7 +44,7 @@ export default function HeroSection() {
         <div
           style={{
             textAlign: "center",
-            marginTop: "-6rem",
+            marginTop: "-20rem",
           }}
         >
           <p
@@ -68,20 +68,22 @@ export default function HeroSection() {
               fontFamily: "var(--font-cormorant)",
               fontWeight: 700,
               fontStyle: "italic",
-              fontSize: "clamp(3.5rem, 8vw, 7.5rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
+              fontSize: "clamp(2rem, 4.5vw, 4.2rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.01em",
               color: "#1C3A6B",
-              maxWidth: 700,
-              marginLeft: "auto",
-              marginRight: "auto",
             }}
           >
-            Explore the China
-            <br />
-            Business Markets
-            <br />
-            <span style={{ color: "#F5C200" }}>with Us.</span>
+            Explore the China Business Markets
+            <span
+              style={{
+                color: "#F5C200",
+                display: "block",
+              }}
+            >
+              {" "}
+              with Us.
+            </span>
           </h1>
 
           <p
