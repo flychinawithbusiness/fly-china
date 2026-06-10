@@ -49,15 +49,18 @@ export default function Navbar() {
             }
       }
     >
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav
+        className="max-w-7xl mx-auto flex items-center justify-between"
+        style={{ padding: "0.75rem 2rem" }}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/images/logo.png"
             alt="Fly China"
-            width={48}
-            height={48}
-            className="rounded-lg"
+            width={140}
+            height={40}
+            style={{ objectFit: "contain" }}
             priority
           />
         </Link>
