@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -19,12 +18,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  // Home page has a light video hero (dark text reads well).
-  // Inner pages have a dark navy hero, so links need light text until scrolled.
-  const isHome = pathname === "/";
-  const lightText = !scrolled && !isHome;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -36,7 +29,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled
+          ? "bg-[#0A1628]/95 backdrop-blur-md shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -58,11 +53,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                lightText
-                  ? "text-white/90 hover:text-white"
-                  : "text-gray-800 hover:text-[#1C3A6B]"
-              }`}
+              className="text-sm font-medium text-white/70 hover:text-white transition-colors"
             >
               {link.label}
             </Link>
@@ -73,7 +64,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="inline-block bg-[#F5C200] text-[#1C3A6B] font-bold rounded-full px-5 py-2 text-sm hover:bg-[#D4A800] transition"
+            className="inline-block bg-[#F5C200] text-[#0A1628] font-bold rounded-full px-5 py-2 text-sm hover:bg-[#D4A800] transition"
           >
             Book Now
           </Link>
@@ -84,9 +75,7 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className={`md:hidden p-1 ${
-            lightText && !open ? "text-white" : "text-gray-800"
-          }`}
+          className="md:hidden p-1 text-white"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -94,13 +83,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/96 backdrop-blur-md shadow-lg p-4 rounded-b-2xl">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0A1628]/96 backdrop-blur-md shadow-lg p-4 rounded-b-2xl">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block py-3 border-b border-gray-100 last:border-none text-sm font-medium text-gray-800 hover:text-[#1C3A6B] transition-colors"
+              className="block py-3 border-b border-white/10 last:border-none text-sm font-medium text-white/80 hover:text-white transition-colors"
             >
               {link.label}
             </Link>
@@ -108,7 +97,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-4 block text-center bg-[#F5C200] text-[#1C3A6B] font-bold rounded-full px-5 py-2.5 text-sm hover:bg-[#D4A800] transition"
+            className="mt-4 block text-center bg-[#F5C200] text-[#0A1628] font-bold rounded-full px-5 py-2.5 text-sm hover:bg-[#D4A800] transition"
           >
             Book Now
           </Link>

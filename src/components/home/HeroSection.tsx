@@ -1,99 +1,218 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
-      {/* Video background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+    <section
+      style={{
+        background:
+          "linear-gradient(180deg, #04080F 0%, #0A1628 50%, #0D1F3C 100%)",
+        height: "100vh",
+        minHeight: 600,
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Cloud layer 1 - slow, behind plane */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "5%",
+          left: 0,
+          width: "200%",
+          height: "40%",
+          backgroundImage:
+            "radial-gradient(ellipse 300px 80px at 25% 50%, rgba(255,255,255,0.04) 0%, transparent 70%), radial-gradient(ellipse 200px 60px at 75% 60%, rgba(255,255,255,0.03) 0%, transparent 70%)",
+          backgroundSize: "800px 100%",
+          animation: "cloudMove 40s linear infinite",
+          zIndex: 1,
+        }}
+      />
+
+      {/* Cloud layer 2 - faster, foreground */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "15%",
+          left: 0,
+          width: "200%",
+          height: "30%",
+          backgroundImage:
+            "radial-gradient(ellipse 400px 100px at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 70%), radial-gradient(ellipse 250px 70px at 65% 40%, rgba(255,255,255,0.04) 0%, transparent 70%)",
+          backgroundSize: "1000px 100%",
+          animation: "cloudMove 25s linear infinite",
+          zIndex: 5,
+        }}
+      />
+
+      {/* Plane */}
+      <motion.div
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1.4, ease: "easeOut" }}
+        style={{
+          position: "absolute",
+          bottom: "5%",
+          left: "-8%",
+          width: "72%",
+          zIndex: 10,
+        }}
       >
-        <source
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4"
-          type="video/mp4"
-        />
-      </video>
+        <motion.div
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <Image
+            src="/images/plane.png"
+            alt="China Southern Airlines"
+            width={1100}
+            height={620}
+            className="object-contain w-full h-auto"
+            priority
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* Brand overlay */}
-      <div className="absolute inset-0 bg-[#1C3A6B]/20 pointer-events-none" />
+      {/* Text - right side */}
+      <div
+        style={{
+          position: "absolute",
+          right: "4%",
+          top: "50%",
+          transform: "translateY(-50%)",
+          textAlign: "right",
+          zIndex: 20,
+          paddingTop: "5rem",
+        }}
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          style={{
+            fontSize: "0.65rem",
+            letterSpacing: "0.2em",
+            color: "#F5C200",
+            textTransform: "uppercase",
+            marginBottom: "1rem",
+            fontFamily: "var(--font-body)",
+          }}
+        >
+          CHINA WHOLESALE MARKET TOURS
+        </motion.p>
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-center px-6">
-        <div className="text-center" style={{ marginTop: "-18rem" }}>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xs font-semibold tracking-[0.15em] text-gray-500 uppercase mb-4"
+        <motion.h1
+          initial={{ opacity: 0, x: 80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6, duration: 0.9 }}
+          style={{
+            fontFamily: "var(--font-display)",
+            lineHeight: 0.88,
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          <span
+            style={{
+              display: "block",
+              fontSize: "clamp(3.5rem, 8vw, 7rem)",
+              color: "rgba(255,255,255,0.15)",
+            }}
           >
-            CHINA WHOLESALE MARKET TOURS
-          </motion.p>
-
-          <motion.span
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="block font-light text-gray-400 leading-none tracking-tighter"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
+            EXPLORE
+          </span>
+          <span
+            style={{
+              display: "block",
+              fontSize: "clamp(4.5rem, 10vw, 9.5rem)",
+              color: "#ffffff",
+            }}
           >
-            Explore
-          </motion.span>
-
-          <motion.span
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="block font-light text-[#1C3A6B] leading-none tracking-tighter -mt-2"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
+            CHINA
+          </span>
+          <span
+            style={{
+              display: "block",
+              fontSize: "clamp(3rem, 7vw, 6.5rem)",
+              color: "#F5C200",
+            }}
           >
-            China.
-          </motion.span>
-
-          <motion.span
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="block font-light text-[#F5C200] leading-none tracking-tighter -mt-2"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
+            BUSINESS
+          </span>
+          <span
+            style={{
+              display: "block",
+              fontSize: "clamp(2.5rem, 6vw, 5rem)",
+              color: "rgba(255,255,255,0.4)",
+            }}
           >
-            With Us.
-          </motion.span>
+            MARKETS
+          </span>
+        </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-base md:text-lg text-gray-500 mt-5 mb-7 max-w-lg mx-auto"
-          >
-            Discover the world&apos;s biggest wholesale markets. We handle
-            everything — flights, hotels, transport and your personal guide.
-          </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.0 }}
+          style={{
+            color: "rgba(255,255,255,0.45)",
+            fontSize: "0.85rem",
+            maxWidth: 300,
+            marginLeft: "auto",
+            lineHeight: 1.7,
+            marginTop: "1.5rem",
+            marginBottom: "2rem",
+            fontFamily: "var(--font-body)",
+          }}
+        >
+          Explore the China business markets with us. Flights, hotels, transport
+          &amp; personal guide — all handled.
+        </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex items-center justify-center gap-4 flex-wrap"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          style={{
+            display: "flex",
+            gap: 10,
+            justifyContent: "flex-end",
+            flexWrap: "wrap",
+          }}
+        >
+          <a
+            href="/packages"
+            style={{
+              padding: "0.65rem 1.5rem",
+              borderRadius: 999,
+              border: "1px solid rgba(255,255,255,0.25)",
+              color: "white",
+              fontSize: "0.8rem",
+              fontWeight: 500,
+              textDecoration: "none",
+              fontFamily: "var(--font-body)",
+            }}
           >
-            <a
-              href="#packages"
-              className="rounded-full px-6 py-2.5 bg-white/70 backdrop-blur-sm text-gray-800 font-medium hover:bg-white transition text-sm"
-            >
-              Explore Packages
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full px-6 py-2.5 bg-[#F5C200] text-[#1C3A6B] font-bold hover:bg-[#D4A800] transition text-sm shadow-lg"
-            >
-              Book a Tour ✈
-            </a>
-          </motion.div>
-        </div>
+            Explore Packages
+          </a>
+          <a
+            href="/contact"
+            style={{
+              padding: "0.65rem 1.5rem",
+              borderRadius: 999,
+              background: "#F5C200",
+              color: "#0A1628",
+              fontSize: "0.8rem",
+              fontWeight: 700,
+              textDecoration: "none",
+              fontFamily: "var(--font-body)",
+            }}
+          >
+            Book a Tour ✈
+          </a>
+        </motion.div>
       </div>
     </section>
   );
