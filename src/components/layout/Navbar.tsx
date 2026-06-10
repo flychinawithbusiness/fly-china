@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -18,6 +19,12 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // The homepage has a LIGHT video hero (needs dark links); inner pages have a
+  // dark hero (need light links). Once scrolled, the bar is dark either way.
+  const isHome = pathname === "/";
+  const lightText = scrolled || !isHome;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -53,7 +60,11 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                lightText
+                  ? "text-white/80 hover:text-white"
+                  : "text-gray-800 hover:text-[#1C3A6B]"
+              }`}
             >
               {link.label}
             </Link>
@@ -75,7 +86,9 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden p-1 text-white"
+          className={`md:hidden p-1 ${
+            lightText && !open ? "text-white" : "text-gray-800"
+          }`}
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
