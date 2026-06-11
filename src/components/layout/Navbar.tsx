@@ -58,9 +58,9 @@ export default function Navbar() {
           <Image
             src="/images/logo.png"
             alt="Fly China"
-            width={140}
-            height={40}
-            style={{ objectFit: "contain" }}
+            width={56}
+            height={56}
+            style={{ borderRadius: 8 }}
             priority
           />
         </Link>

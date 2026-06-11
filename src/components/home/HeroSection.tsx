@@ -58,9 +58,9 @@ function Navbar() {
           <Image
             src="/images/logo.png"
             alt="FlyChina"
-            width={120}
-            height={34}
-            style={{ height: 34, width: "auto", objectFit: "contain" }}
+            width={56}
+            height={56}
+            style={{ borderRadius: 8 }}
           />
         </Link>
 
