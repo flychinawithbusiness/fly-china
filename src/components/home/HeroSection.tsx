@@ -47,7 +47,7 @@ function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0.75rem 2rem",
+          padding: "0.4rem 2rem",
         }}
       >
         {/* Logo */}

@@ -51,7 +51,7 @@ export default function Navbar() {
     >
       <nav
         className="max-w-7xl mx-auto flex items-center justify-between"
-        style={{ padding: "0.75rem 2rem" }}
+        style={{ padding: "0.4rem 2rem" }}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
