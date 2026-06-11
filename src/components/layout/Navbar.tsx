@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -19,12 +18,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  // The homepage has a LIGHT video hero (needs dark links); inner pages have a
-  // dark hero (need light links). Once scrolled, the bar is dark either way.
-  const isHome = pathname === "/";
-  const lightText = scrolled || !isHome;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -35,17 +28,20 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#0A1628]/95 backdrop-blur-md shadow-sm" : ""
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={
         scrolled
-          ? undefined
-          : {
-              background: "rgba(255,255,255,0.15)",
+          ? {
+              background: "rgba(10,22,40,0.97)",
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
-              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+            }
+          : {
+              background: "rgba(10,22,40,0.85)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
             }
       }
     >
@@ -71,11 +67,12 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                lightText
-                  ? "text-white/80 hover:text-white"
-                  : "text-gray-800 hover:text-[#1C3A6B]"
-              }`}
+              className="text-sm font-medium transition-colors hover:text-white"
+              style={{
+                color: scrolled
+                  ? "rgba(255,255,255,0.8)"
+                  : "rgba(255,255,255,0.85)",
+              }}
             >
               {link.label}
             </Link>
@@ -97,9 +94,7 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className={`md:hidden p-1 ${
-            lightText && !open ? "text-white" : "text-gray-800"
-          }`}
+          className="md:hidden p-1 text-white"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>

@@ -29,14 +29,14 @@ function Navbar() {
         transition: "background 0.3s, box-shadow 0.3s",
         ...(scrolled
           ? {
-              background: "var(--navy-95)",
+              background: "rgba(10,22,40,0.97)",
               backdropFilter: "blur(12px)",
-              boxShadow: "0 1px 3px rgba(10,22,40,0.2)",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
             }
           : {
-              background: "rgba(255,255,255,0.15)",
+              background: "rgba(10,22,40,0.85)",
               backdropFilter: "blur(12px)",
-              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
             }),
       }}
     >
@@ -79,7 +79,9 @@ function Navbar() {
                 fontWeight: 500,
                 textDecoration: "none",
                 transition: "color 0.2s",
-                color: scrolled ? "rgba(255,255,255,0.8)" : "var(--gray-800)",
+                color: scrolled
+                  ? "rgba(255,255,255,0.8)"
+                  : "rgba(255,255,255,0.85)",
               }}
             >
               {l}
@@ -115,7 +117,7 @@ function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: 4,
-            color: scrolled && !open ? "#fff" : "var(--gray-800)",
+            color: "#fff",
           }}
         >
           {open ? <X size={26} /> : <Menu size={26} />}
