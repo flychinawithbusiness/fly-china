@@ -29,13 +29,15 @@ function Navbar() {
         transition: "background 0.3s, box-shadow 0.3s",
         ...(scrolled
           ? {
-              background: "rgba(10,22,40,0.97)",
-              backdropFilter: "blur(12px)",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+              background: "rgba(10,22,40,0.85)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
             }
           : {
-              background: "rgba(10,22,40,0.85)",
-              backdropFilter: "blur(12px)",
+              background: "rgba(10,22,40,0.65)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
               borderBottom: "1px solid rgba(255,255,255,0.08)",
             }),
       }}
@@ -47,7 +49,7 @@ function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0.4rem 2rem",
+          padding: "0.15rem 2rem",
         }}
       >
         {/* Logo */}
