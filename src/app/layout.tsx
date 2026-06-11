@@ -7,15 +7,16 @@ import Footer from "@/components/layout/Footer";
 
 const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-cormorant",
   style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-display",
 });
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-serif",
 });
 
 const dmSans = DM_Sans({

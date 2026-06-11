@@ -13,6 +13,8 @@ export default function SiteShell({
 }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
+  // The homepage hero renders its own built-in navbar.
+  const isHome = pathname === "/";
 
   // Admin routes render without the public navbar/footer.
   if (isAdmin) {
@@ -21,7 +23,7 @@ export default function SiteShell({
 
   return (
     <>
-      {navbar}
+      {!isHome && navbar}
       {children}
       {footer}
     </>

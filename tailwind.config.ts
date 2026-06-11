@@ -14,8 +14,8 @@ const config: Config = {
         gold: { DEFAULT: "#F5C200", dark: "#D4A800" },
       },
       fontFamily: {
-        display: ["var(--font-cormorant)", "serif"],
-        playfair: ["var(--font-playfair)", "serif"],
+        display: ["var(--font-display)", "serif"],
+        serif: ["var(--font-serif)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
         sans: ["var(--font-body)", "sans-serif"],
       },
