@@ -1,65 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/ui/FadeIn";
 
-const STEPS = [
-  {
-    icon: "📋",
-    title: "Inquire",
-    text: "Fill our form or WhatsApp us with your preferred dates.",
-  },
-  {
-    icon: "📞",
-    title: "Confirm",
-    text: "We call you to confirm trip details and arrange payment.",
-  },
-  {
-    icon: "✈️",
-    title: "Fly",
-    text: "We handle everything. You just arrive at the airport.",
-  },
-  {
-    icon: "🛍️",
-    title: "Source",
-    text: "Shop Guangzhou's markets with your guide beside you.",
-  },
+const steps = [
+  { num: "01", icon: "📋", title: "Inquire", desc: "Fill our form or WhatsApp us with your preferred dates and group size." },
+  { num: "02", icon: "📞", title: "Confirm", desc: "We call you to confirm trip details and arrange payment." },
+  { num: "03", icon: "✈️", title: "Fly", desc: "We handle everything. You just show up at the airport." },
+  { num: "04", icon: "🛍️", title: "Source", desc: "Shop Guangzhou's markets with your dedicated guide beside you." },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="markets" className="bg-white py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-light text-[#1C3A6B] text-center mb-16">
-          How It Works
-        </h2>
-
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-4">
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative flex-1 flex flex-col items-center text-center"
+    <section className="bg-[#F8F9FB] py-24 px-6">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <FadeIn>
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-widest text-gold uppercase font-body font-semibold">
+              The Process
+            </p>
+            <h2
+              className="text-navy mt-3"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
+                fontWeight: 700,
+                fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                lineHeight: 1.1,
+              }}
             >
-              {/* Connecting dashed line (desktop only) */}
-              {i < STEPS.length - 1 && (
-                <span className="hidden md:block absolute top-6 left-1/2 w-full border-t-2 border-dashed border-[#F5C200]/40 -z-0" />
-              )}
+              How It Works
+            </h2>
+          </div>
+        </FadeIn>
 
-              <div className="relative z-10 bg-[#1C3A6B] text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mb-5">
-                {i + 1}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          {/* Connecting line (desktop) */}
+          <div className="absolute hidden md:block top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+
+          {steps.map((step, i) => (
+            <FadeIn key={step.num} delay={i * 0.15}>
+              <div className="text-center relative z-10">
+                <div
+                  className="w-16 h-16 rounded-full bg-[#1C3A6B] text-white flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#1C3A6B]/20"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 700,
+                    fontSize: "1.25rem",
+                  }}
+                >
+                  {step.num}
+                </div>
+                <div className="text-2xl mb-3">{step.icon}</div>
+                <h3 className="font-body font-bold text-gray-900 text-base mb-2">
+                  {step.title}
+                </h3>
+                <p className="font-body text-gray-500 text-sm leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
-
-              <div className="text-4xl mb-3">{step.icon}</div>
-              <h3 className="text-[#1C3A6B] font-semibold text-lg mb-2">
-                {step.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-[14rem]">
-                {step.text}
-              </p>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
       </div>
