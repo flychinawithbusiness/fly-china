@@ -33,7 +33,10 @@ export const metadata: Metadata = {
   description:
     "Join guided business tours to China's wholesale markets. 7, 10 and 14 day packages from Bangladesh. Flights, hotel, food, transport and guide included.",
   icons: {
-    icon: "/images/logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/images/logo.png", sizes: "192x192" },
+    ],
     apple: "/images/logo.png",
   },
   keywords: [
