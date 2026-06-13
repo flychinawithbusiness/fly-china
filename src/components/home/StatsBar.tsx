@@ -29,9 +29,9 @@ export default function StatsBar() {
           >
             <div
               style={{
-                fontFamily: "var(--font-display)",
+                fontFamily: "var(--font-body)",
                 fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                fontWeight: 700,
+                fontWeight: 800,
                 color: "var(--gold)",
                 lineHeight: 1,
               }}

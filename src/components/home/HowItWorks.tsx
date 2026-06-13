@@ -41,17 +41,7 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <FadeIn key={step.num} delay={i * 0.15}>
               <div className="text-center relative z-10">
-                <div
-                  className="w-16 h-16 rounded-full bg-[#1C3A6B] text-white flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#1C3A6B]/20"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: "1.25rem",
-                  }}
-                >
-                  {step.num}
-                </div>
-                <div className="text-2xl mb-3">{step.icon}</div>
+                <div className="text-4xl mb-3">{step.icon}</div>
                 <h3 className="font-body font-bold text-gray-900 text-base mb-2">
                   {step.title}
                 </h3>

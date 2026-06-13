@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import FadeIn from "@/components/ui/FadeIn";
 
 const testimonials = [
@@ -22,6 +23,47 @@ const testimonials = [
     stars: 5,
   },
 ];
+
+const baseStyle: React.CSSProperties = {
+  boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+  transition: "all 0.3s ease",
+};
+const hoverStyle: React.CSSProperties = {
+  boxShadow: "0 16px 40px rgba(28,58,107,0.1)",
+  transform: "translateY(-4px)",
+};
+
+function TestimonialCard({
+  t,
+}: {
+  t: { name: string; country: string; text: string; stars: number };
+}) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="bg-white rounded-2xl p-7 h-full flex flex-col"
+      style={{ ...baseStyle, ...(hovered ? hoverStyle : {}) }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="text-gold text-sm mb-4">{"⭐".repeat(t.stars)}</div>
+      <p className="font-body text-gray-600 text-sm leading-relaxed italic mb-5 flex-1">
+        &ldquo;{t.text}&rdquo;
+      </p>
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full bg-[#1C3A6B] text-white font-bold text-sm flex items-center justify-center shrink-0">
+          {t.name.charAt(0)}
+        </div>
+        <div>
+          <p className="font-body font-semibold text-gray-900 text-sm">
+            {t.name}
+          </p>
+          <p className="text-gray-400 text-xs">{t.country}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Testimonials() {
   return (
@@ -51,25 +93,7 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <FadeIn key={t.name} delay={i * 0.1}>
-              <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition h-full flex flex-col">
-                <div className="text-gold text-sm mb-4">
-                  {"⭐".repeat(t.stars)}
-                </div>
-                <p className="font-body text-gray-600 text-sm leading-relaxed italic mb-5 flex-1">
-                  &ldquo;{t.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1C3A6B] text-white font-bold text-sm flex items-center justify-center shrink-0">
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-body font-semibold text-gray-900 text-sm">
-                      {t.name}
-                    </p>
-                    <p className="text-gray-400 text-xs">{t.country}</p>
-                  </div>
-                </div>
-              </div>
+              <TestimonialCard t={t} />
             </FadeIn>
           ))}
         </div>

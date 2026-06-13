@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import FadeIn from "@/components/ui/FadeIn";
 
 const markets = [
@@ -10,6 +11,42 @@ const markets = [
   { emoji: "🛍️", name: "General Merchandise", desc: "Toys, stationery, daily items", location: "Yide Road" },
   { emoji: "🧴", name: "Beauty & Cosmetics", desc: "Skincare, makeup, hair products", location: "Baiyun Area" },
 ];
+
+const baseStyle: React.CSSProperties = {
+  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+  transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+};
+const hoverStyle: React.CSSProperties = {
+  boxShadow: "0 20px 40px rgba(28,58,107,0.15)",
+  transform: "translateY(-6px)",
+};
+
+function MarketCard({
+  market,
+}: {
+  market: { emoji: string; name: string; desc: string; location: string };
+}) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="bg-[#F8F9FB] rounded-2xl p-6 hover:bg-[#1C3A6B] group cursor-pointer h-full"
+      style={{ ...baseStyle, ...(hovered ? hoverStyle : {}) }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="text-3xl mb-3">{market.emoji}</div>
+      <h3 className="font-body font-semibold text-gray-900 group-hover:text-white mb-1 transition-colors">
+        {market.name}
+      </h3>
+      <p className="text-gray-500 text-xs group-hover:text-white/70 transition-colors leading-relaxed mb-3">
+        {market.desc}
+      </p>
+      <span className="inline-flex items-center gap-1 text-[10px] font-medium bg-gold/10 text-[#1C3A6B] group-hover:bg-white/10 group-hover:text-white px-2 py-1 rounded-full transition-all">
+        📍 {market.location}
+      </span>
+    </div>
+  );
+}
 
 export default function MarketsSection() {
   return (
@@ -44,18 +81,7 @@ export default function MarketsSection() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
           {markets.map((m, i) => (
             <FadeIn key={m.name} delay={i * 0.08}>
-              <div className="bg-[#F8F9FB] rounded-2xl p-6 hover:bg-[#1C3A6B] group transition-all duration-300 cursor-pointer h-full">
-                <div className="text-3xl mb-3">{m.emoji}</div>
-                <h3 className="font-body font-semibold text-gray-900 group-hover:text-white mb-1 transition-colors">
-                  {m.name}
-                </h3>
-                <p className="text-gray-500 text-xs group-hover:text-white/70 transition-colors leading-relaxed mb-3">
-                  {m.desc}
-                </p>
-                <span className="inline-flex items-center gap-1 text-[10px] font-medium bg-gold/10 text-[#1C3A6B] group-hover:bg-white/10 group-hover:text-white px-2 py-1 rounded-full transition-all">
-                  📍 {m.location}
-                </span>
-              </div>
+              <MarketCard market={m} />
             </FadeIn>
           ))}
         </div>
