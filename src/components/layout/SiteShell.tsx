@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation";
 export default function SiteShell({
   navbar,
   footer,
+  floatWidget,
   children,
 }: {
   navbar: React.ReactNode;
   footer: React.ReactNode;
+  floatWidget: React.ReactNode;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -26,6 +28,7 @@ export default function SiteShell({
       {!isHome && navbar}
       {children}
       {footer}
+      {floatWidget}
     </>
   );
 }

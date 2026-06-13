@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteShell from "@/components/layout/SiteShell";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FloatWidget from "@/components/layout/FloatWidget";
 
 const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
@@ -78,7 +79,11 @@ export default function RootLayout({
       className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable}`}
     >
       <body className="min-h-screen flex flex-col font-sans">
-        <SiteShell navbar={<Navbar />} footer={<Footer />}>
+        <SiteShell
+          navbar={<Navbar />}
+          footer={<Footer />}
+          floatWidget={<FloatWidget />}
+        >
           {children}
         </SiteShell>
       </body>
