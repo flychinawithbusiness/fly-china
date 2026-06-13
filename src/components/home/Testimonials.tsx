@@ -25,7 +25,9 @@ const testimonials = [
 ];
 
 const baseStyle: React.CSSProperties = {
-  boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+  background: "#ffffff",
+  border: "1px solid rgba(28,58,107,0.07)",
+  boxShadow: "0 4px 20px rgba(28,58,107,0.07)",
   transition: "all 0.3s ease",
 };
 const hoverStyle: React.CSSProperties = {

@@ -27,7 +27,9 @@ const CARDS = [
 ];
 
 const baseStyle: React.CSSProperties = {
-  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+  background: "#ffffff",
+  border: "1px solid rgba(28,58,107,0.07)",
+  boxShadow: "0 4px 16px rgba(28,58,107,0.08), 0 1px 4px rgba(0,0,0,0.04)",
   transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
 };
 const hoverStyle: React.CSSProperties = {
@@ -43,7 +45,7 @@ function WhyCard({
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="bg-gray-50 rounded-2xl p-7 group h-full"
+      className="bg-white rounded-2xl p-7 group h-full"
       style={{ ...baseStyle, ...(hovered ? hoverStyle : {}) }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

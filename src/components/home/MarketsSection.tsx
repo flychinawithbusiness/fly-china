@@ -13,7 +13,8 @@ const markets = [
 ];
 
 const baseStyle: React.CSSProperties = {
-  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+  border: "1px solid rgba(28,58,107,0.07)",
+  boxShadow: "0 4px 16px rgba(0,0,0,0.06)",
   transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
 };
 const hoverStyle: React.CSSProperties = {
@@ -29,7 +30,7 @@ function MarketCard({
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="bg-[#F8F9FB] rounded-2xl p-6 hover:bg-[#1C3A6B] group cursor-pointer h-full"
+      className="bg-white rounded-2xl p-6 hover:bg-[#1C3A6B] group cursor-pointer h-full"
       style={{ ...baseStyle, ...(hovered ? hoverStyle : {}) }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
