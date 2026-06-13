@@ -49,7 +49,7 @@ function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0.15rem 2rem",
+          padding: "0.1rem 1.5rem",
         }}
       >
         {/* Logo */}
@@ -60,8 +60,8 @@ function Navbar() {
           <Image
             src="/images/logo.png"
             alt="FlyChina"
-            width={160}
-            height={45}
+            width={90}
+            height={22}
             style={{ objectFit: "contain" }}
           />
         </Link>
@@ -234,7 +234,7 @@ export default function HeroSection() {
           <div
             style={{
               textAlign: "center",
-              marginTop: "-9rem",
+              marginTop: "-16rem",
               maxWidth: "min(94vw, 700px)",
             }}
           >
@@ -245,9 +245,9 @@ export default function HeroSection() {
               style={{
                 margin: "0 0 1rem",
                 fontFamily: "var(--font-body)",
-                fontSize: "0.75rem",
+                fontSize: "0.7rem",
                 fontWeight: 600,
-                letterSpacing: "var(--tracking-widest)",
+                letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color: "var(--gray-600)",
               }}
@@ -260,25 +260,34 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                margin: "0 0 1.25rem",
+                margin: "0 0 1rem",
                 fontFamily: "var(--font-display)",
                 fontStyle: "italic",
                 fontWeight: 700,
-                fontSize: "clamp(1.8rem, 3.2vw, 3.5rem)",
-                lineHeight: 1.15,
-                letterSpacing: "-0.01em",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
               }}
             >
               <span
                 style={{
                   display: "block",
-                  color: "var(--navy-light)",
+                  fontSize: "clamp(2.5rem, 5vw, 5.5rem)",
+                  color: "var(--navy)",
+                  fontStyle: "normal",
+                  fontWeight: 800,
                   whiteSpace: "nowrap",
                 }}
               >
                 Explore the China Business Markets
               </span>
-              <span style={{ display: "block", color: "var(--gold)" }}>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "clamp(2rem, 4vw, 4.5rem)",
+                  color: "var(--gold)",
+                  fontStyle: "italic",
+                }}
+              >
                 with Us.
               </span>
             </motion.h1>
