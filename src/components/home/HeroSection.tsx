@@ -271,10 +271,11 @@ export default function HeroSection() {
               <span
                 style={{
                   display: "block",
-                  fontSize: "clamp(1.8rem, 3.5vw, 4rem)",
+                  fontSize: "clamp(2rem, 3.5vw, 4.5rem)",
                   color: "var(--navy)",
                   fontStyle: "normal",
                   fontWeight: 800,
+                  whiteSpace: "nowrap",
                 }}
               >
                 Explore the China Business Markets
