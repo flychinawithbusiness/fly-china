@@ -45,6 +45,34 @@ body {
   }
 }
 
+/* Form inputs */
+.fc-input {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  width: 100%;
+  outline: none;
+}
+.fc-input:focus {
+  border-color: #1c3a6b;
+  box-shadow: 0 0 0 3px rgba(28, 58, 107, 0.08);
+}
+
+/* Contact info card hover lift (full styling in CSS so :hover can override) */
+.fc-contact-card {
+  background: #ffffff;
+  border: 1px solid rgba(28, 58, 107, 0.07);
+  box-shadow: 0 4px 16px rgba(28, 58, 107, 0.06);
+  transition: all 0.3s ease;
+}
+.fc-contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(28, 58, 107, 0.12);
+}
+
 /* Responsive nav visibility helpers */
 .fc-desktop-nav {
   display: flex;

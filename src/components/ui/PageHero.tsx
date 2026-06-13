@@ -1,27 +1,86 @@
-type PageHeroProps = {
+export default function PageHero({
+  title,
+  subtitle,
+  badge,
+}: {
   title: string;
   subtitle: string;
   badge: string;
-};
-
-export default function PageHero({ title, subtitle, badge }: PageHeroProps) {
+}) {
   return (
     <section
-      className="bg-[#0A1628] py-24 px-6 text-center pt-32"
       style={{
-        backgroundImage:
-          "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 50%)",
-        backgroundSize: "20px 20px",
+        background: "linear-gradient(135deg, #0A1628 0%, #1C3A6B 100%)",
+        paddingTop: "7rem",
+        paddingBottom: "5rem",
+        paddingLeft: "1.5rem",
+        paddingRight: "1.5rem",
+        textAlign: "center",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="max-w-3xl mx-auto">
-        <span className="inline-block bg-[#F5C200]/10 text-[#F5C200] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full border border-[#F5C200]/20 mb-6">
+      {/* Background pattern */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          backgroundImage:
+            "radial-gradient(circle at 20% 50%, rgba(245,194,0,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(245,194,0,0.06) 0%, transparent 50%)",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: 700,
+          margin: "0 auto",
+        }}
+      >
+        <span
+          style={{
+            display: "inline-flex",
+            background: "rgba(245,194,0,0.1)",
+            border: "1px solid rgba(245,194,0,0.2)",
+            color: "#F5C200",
+            fontSize: "0.65rem",
+            fontWeight: 600,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            padding: "0.4rem 1rem",
+            borderRadius: 999,
+            marginBottom: "1.25rem",
+            fontFamily: "var(--font-body)",
+          }}
+        >
           {badge}
         </span>
-        <h1 className="text-4xl md:text-5xl font-light text-white mb-4">
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
+            fontWeight: 700,
+            fontSize: "clamp(2.2rem, 5vw, 4rem)",
+            color: "#ffffff",
+            lineHeight: 1.1,
+            margin: "0 0 1rem",
+            letterSpacing: "-0.02em",
+          }}
+        >
           {title}
         </h1>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">{subtitle}</p>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "1rem",
+            color: "rgba(255,255,255,0.55)",
+            lineHeight: 1.7,
+            margin: 0,
+          }}
+        >
+          {subtitle}
+        </p>
       </div>
     </section>
   );

@@ -11,6 +11,37 @@ type GalleryImage = {
   category: string;
 };
 
+function GalleryCard({ img }: { img: GalleryImage }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
+      style={{
+        boxShadow: hovered
+          ? "0 16px 40px rgba(0,0,0,0.2)"
+          : "0 4px 16px rgba(0,0,0,0.1)",
+        transform: hovered ? "scale(1.03)" : "scale(1)",
+        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+    >
+      <Image
+        src={img.url}
+        alt={img.alt}
+        fill
+        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-end p-3">
+        <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+          {img.category}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
   const [active, setActive] = useState("All");
 
@@ -37,8 +68,8 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
               onClick={() => setActive(f)}
               className={`rounded-full px-5 py-2 text-sm font-medium transition ${
                 active === f
-                  ? "bg-[#1C3A6B] text-white"
-                  : "bg-white text-gray-600 border border-gray-200 hover:border-[#1C3A6B]"
+                  ? "bg-navy text-white shadow-lg shadow-navy/20"
+                  : "bg-white border border-gray-200 text-gray-600 hover:border-navy/30"
               }`}
             >
               {f}
@@ -47,30 +78,22 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <AnimatePresence mode="popLayout">
-            {filtered.map((img) => (
+            {filtered.map((img, i) => (
               <motion.div
                 key={img.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92 }}
+                transition={{
+                  duration: 0.4,
+                  delay: i * 0.05,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               >
-                <Image
-                  src={img.url}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-end p-3">
-                  <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    {img.category}
-                  </span>
-                </div>
+                <GalleryCard img={img} />
               </motion.div>
             ))}
           </AnimatePresence>

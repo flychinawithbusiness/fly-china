@@ -9,9 +9,14 @@ const MONTHS = [
   "Flexible",
 ];
 
-const inputClass =
-  "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1C3A6B] transition";
+const inputClass = "fc-input";
 const labelClass = "block text-sm font-medium text-gray-700 mb-1.5";
+
+const formContainerStyle: React.CSSProperties = {
+  border: "1px solid rgba(28,58,107,0.08)",
+  boxShadow: "0 8px 40px rgba(28,58,107,0.1)",
+  borderRadius: 24,
+};
 
 type FormData = {
   fullName: string;
@@ -70,7 +75,7 @@ export default function InquiryForm() {
 
   if (success) {
     return (
-      <div className="bg-white rounded-3xl shadow-md p-8 text-center">
+      <div className="bg-white p-8 text-center" style={formContainerStyle}>
         <div className="bg-green-50 text-green-700 rounded-2xl p-6 mb-6">
           <p className="text-lg font-semibold">
             ✅ Thank you! We&apos;ll contact you within 24 hours.
@@ -92,7 +97,7 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white rounded-3xl shadow-md p-8">
+    <div className="bg-white p-8" style={formContainerStyle}>
       <h2 className="font-semibold text-[#1C3A6B] text-xl mb-6">
         Send an Inquiry
       </h2>

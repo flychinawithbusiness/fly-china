@@ -39,7 +39,7 @@ export default async function ContactPage() {
                   href={`https://wa.me/${digitsOnly(whatsapp)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#25D366]/10 rounded-2xl p-5 flex gap-4 items-center"
+                  className="fc-contact-card rounded-2xl p-5 flex gap-4 items-center"
                 >
                   <span className="text-3xl text-[#25D366]">💬</span>
                   <div className="flex-1">
@@ -56,7 +56,7 @@ export default async function ContactPage() {
 
               {/* WeChat */}
               {wechat && (
-                <div className="bg-[#1C3A6B]/10 rounded-2xl p-5 flex gap-4 items-center">
+                <div className="fc-contact-card rounded-2xl p-5 flex gap-4 items-center">
                   <span className="text-3xl text-[#1C3A6B]">💬</span>
                   <div>
                     <p className="font-semibold text-gray-800">WeChat</p>
@@ -69,7 +69,7 @@ export default async function ContactPage() {
               {phone && (
                 <a
                   href={`tel:${digitsOnly(phone)}`}
-                  className="bg-gray-100 rounded-2xl p-5 flex gap-4 items-center"
+                  className="fc-contact-card rounded-2xl p-5 flex gap-4 items-center"
                 >
                   <span className="text-3xl">📞</span>
                   <div>
@@ -83,7 +83,7 @@ export default async function ContactPage() {
               {email && (
                 <a
                   href={`mailto:${email}`}
-                  className="bg-gray-100 rounded-2xl p-5 flex gap-4 items-center"
+                  className="fc-contact-card rounded-2xl p-5 flex gap-4 items-center"
                 >
                   <span className="text-3xl">✉️</span>
                   <div>
