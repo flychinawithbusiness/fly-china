@@ -6,13 +6,5 @@ export default async function FloatWidget() {
   const get = (key: string) =>
     contacts.find((c) => c.key === key)?.value ?? "";
 
-  return (
-    <FloatWidgetClient
-      whatsapp={get("whatsapp")}
-      phone={get("phone")}
-      facebook={get("facebook")}
-      instagram={get("instagram")}
-      wechat={get("wechat_qr")}
-    />
-  );
+  return <FloatWidgetClient whatsapp={get("whatsapp")} />;
 }
