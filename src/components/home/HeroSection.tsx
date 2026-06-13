@@ -260,26 +260,26 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                margin: 0,
+                margin: "0 0 1.25rem",
                 fontFamily: "var(--font-display)",
                 fontStyle: "italic",
                 fontWeight: 700,
-                fontSize: "var(--text-display)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
+                fontSize: "clamp(1.8rem, 3.2vw, 3.5rem)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.01em",
               }}
             >
-              <span style={{ display: "block", color: "var(--navy-light)" }}>
-                Explore the China Business Markets
-              </span>
               <span
                 style={{
                   display: "block",
-                  marginTop: "-0.1em",
-                  color: "var(--navy)",
+                  color: "var(--navy-light)",
+                  whiteSpace: "nowrap",
                 }}
               >
-                with <span style={{ color: "var(--gold)" }}>Us.</span>
+                Explore the China Business Markets
+              </span>
+              <span style={{ display: "block", color: "var(--gold)" }}>
+                with Us.
               </span>
             </motion.h1>
 
@@ -296,7 +296,7 @@ export default function HeroSection() {
                 lineHeight: 1.6,
               }}
             >
-              Flights, hotel, food, transport &amp; guide — all included.
+              Flights, hotel, food, transport &amp; guide - all included.
             </motion.p>
 
             <motion.div
