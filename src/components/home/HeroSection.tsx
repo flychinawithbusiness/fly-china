@@ -235,7 +235,7 @@ export default function HeroSection() {
             style={{
               textAlign: "center",
               marginTop: "-16rem",
-              maxWidth: "min(94vw, 700px)",
+              width: "100%",
             }}
           >
             <motion.p
@@ -271,7 +271,7 @@ export default function HeroSection() {
               <span
                 style={{
                   display: "block",
-                  fontSize: "clamp(2rem, 4vw, 4rem)",
+                  fontSize: "clamp(1.8rem, 3.5vw, 4rem)",
                   color: "var(--navy)",
                   fontStyle: "normal",
                   fontWeight: 800,
