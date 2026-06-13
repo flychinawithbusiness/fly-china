@@ -29,16 +29,16 @@ function Navbar() {
         transition: "background 0.3s, box-shadow 0.3s",
         ...(scrolled
           ? {
-              background: "rgba(10,22,40,0.85)",
+              background: "rgba(28,58,107,0.92)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              borderBottom: "1px solid rgba(255,255,255,0.08)",
+              borderBottom: "1px solid rgba(255,255,255,0.1)",
             }
           : {
-              background: "rgba(10,22,40,0.65)",
+              background: "rgba(28,58,107,0.75)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              borderBottom: "1px solid rgba(255,255,255,0.08)",
+              borderBottom: "1px solid rgba(255,255,255,0.15)",
             }),
       }}
     >
