@@ -14,12 +14,13 @@ export default function SiteShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin");
+  // Admin and CRM portals render without the public navbar/footer/widget.
+  const isBare =
+    pathname?.startsWith("/admin") || pathname?.startsWith("/crm");
   // The homepage hero renders its own built-in navbar.
   const isHome = pathname === "/";
 
-  // Admin routes render without the public navbar/footer.
-  if (isAdmin) {
+  if (isBare) {
     return <>{children}</>;
   }
 
