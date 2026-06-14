@@ -152,6 +152,22 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
             </div>
           )}
         </div>
+
+        {/* Hotel */}
+        <div style={{ background: "white", borderRadius: 20, padding: "1.5rem", border: "1px solid rgba(28,58,107,0.07)", boxShadow: "0 4px 16px rgba(28,58,107,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+            <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0 }}>🏨 Hotels</h3>
+            <Link href={`/crm/bookings/${id}/hotel`} style={{ color: "#1C3A6B", textDecoration: "none", fontSize: "0.75rem", fontWeight: 600, fontFamily: "var(--font-body)" }}>+ Add</Link>
+          </div>
+          {booking.hotels.length === 0 ? (
+            <p style={{ color: "#9CA3AF", fontSize: "0.8rem", fontFamily: "var(--font-body)" }}>No hotel booked.</p>
+          ) : booking.hotels.map(h => (
+            <div key={h.id} style={{ padding: "0.6rem 0", borderBottom: "1px solid #F3F4F6" }}>
+              <div style={{ fontSize: "0.875rem", fontWeight: 600, color: "#111827", fontFamily: "var(--font-body)" }}>{"★".repeat(h.hotel.stars)} {h.hotel.name}</div>
+              <div style={{ fontSize: "0.75rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{new Date(h.checkIn).toLocaleDateString()} → {new Date(h.checkOut).toLocaleDateString()} · {h.rooms} room(s)</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
