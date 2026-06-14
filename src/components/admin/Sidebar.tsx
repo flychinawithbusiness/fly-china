@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { href: "/admin/faq", label: "FAQ", icon: "❓" },
   { href: "/admin/contact-info", label: "Contact Info", icon: "📞" },
   { href: "/admin/inquiries", label: "Inquiries", icon: "📋" },
+  { href: "/admin/analytics", label: "Analytics", icon: "📊" },
   { href: "/admin/settings", label: "Settings", icon: "⚙️" },
 ];
 
