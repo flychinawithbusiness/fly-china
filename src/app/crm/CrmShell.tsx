@@ -13,6 +13,7 @@ const navItems = [
   { href: "/crm/payments", label: "Payments", icon: "💰" },
   { href: "/crm/guides", label: "Guides", icon: "🧭" },
   { href: "/crm/hotels", label: "Hotels", icon: "🏨" },
+  { href: "/crm/restaurants", label: "Restaurants", icon: "🍽️" },
   { href: "/crm/employees", label: "Employees", icon: "👥" },
 ];
 

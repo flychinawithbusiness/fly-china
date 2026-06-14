@@ -149,6 +149,9 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
               {booking.guideAssignment.rating && (
                 <div style={{ fontSize: "0.8rem", color: "#F5C200", marginTop: "0.25rem" }}>{"★".repeat(booking.guideAssignment.rating)}</div>
               )}
+              {booking.status === "completed" && !booking.guideAssignment.rating && (
+                <Link href={`/crm/bookings/${id}/guide-rating`} style={{ display: "block", textAlign: "center", marginTop: "0.75rem", background: "#FEF9EE", border: "1px solid #FDE68A", color: "#92400E", padding: "0.5rem", borderRadius: 10, textDecoration: "none", fontFamily: "var(--font-body)", fontSize: "0.8rem", fontWeight: 600 }}>⭐ Rate this guide</Link>
+              )}
             </div>
           )}
         </div>
@@ -165,6 +168,41 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
             <div key={h.id} style={{ padding: "0.6rem 0", borderBottom: "1px solid #F3F4F6" }}>
               <div style={{ fontSize: "0.875rem", fontWeight: 600, color: "#111827", fontFamily: "var(--font-body)" }}>{"★".repeat(h.hotel.stars)} {h.hotel.name}</div>
               <div style={{ fontSize: "0.75rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{new Date(h.checkIn).toLocaleDateString()} → {new Date(h.checkOut).toLocaleDateString()} · {h.rooms} room(s)</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Meals */}
+        <div style={{ background: "white", borderRadius: 20, padding: "1.5rem", border: "1px solid rgba(28,58,107,0.07)", boxShadow: "0 4px 16px rgba(28,58,107,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+            <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0 }}>🍽️ Meals</h3>
+            <Link href={`/crm/bookings/${id}/meal`} style={{ color: "#1C3A6B", textDecoration: "none", fontSize: "0.75rem", fontWeight: 600, fontFamily: "var(--font-body)" }}>+ Add</Link>
+          </div>
+          {booking.meals.length === 0 ? (
+            <p style={{ color: "#9CA3AF", fontSize: "0.8rem", fontFamily: "var(--font-body)" }}>No meals scheduled.</p>
+          ) : booking.meals.map(m => (
+            <div key={m.id} style={{ padding: "0.5rem 0", borderBottom: "1px solid #F3F4F6", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div>
+                <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "#111827", fontFamily: "var(--font-body)" }}>{new Date(m.date).toLocaleDateString()} · {m.mealType}</div>
+                {m.restaurant && <div style={{ fontSize: "0.75rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{m.restaurant.name}</div>}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Transport */}
+        <div style={{ background: "white", borderRadius: 20, padding: "1.5rem", border: "1px solid rgba(28,58,107,0.07)", boxShadow: "0 4px 16px rgba(28,58,107,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+            <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0 }}>🚌 Transport</h3>
+            <Link href={`/crm/bookings/${id}/transport`} style={{ color: "#1C3A6B", textDecoration: "none", fontSize: "0.75rem", fontWeight: 600, fontFamily: "var(--font-body)" }}>+ Add</Link>
+          </div>
+          {booking.transports.length === 0 ? (
+            <p style={{ color: "#9CA3AF", fontSize: "0.8rem", fontFamily: "var(--font-body)" }}>No transport booked.</p>
+          ) : booking.transports.map(t => (
+            <div key={t.id} style={{ padding: "0.5rem 0", borderBottom: "1px solid #F3F4F6" }}>
+              <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "#111827", fontFamily: "var(--font-body)" }}>{t.type === "bus" ? "🚌" : t.type === "car" ? "🚗" : "🚐"} {t.type} {t.vehicleNumber ? `· ${t.vehicleNumber}` : ""}</div>
+              <div style={{ fontSize: "0.75rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{t.pickupLocation} → {t.dropoffLocation}</div>
+              <div style={{ fontSize: "0.75rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{new Date(t.pickupTime).toLocaleString()}</div>
             </div>
           ))}
         </div>
