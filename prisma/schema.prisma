@@ -141,6 +141,20 @@ model Booking {
   transports      Transport[]
   guideAssignment GuideAssignment?
   payments        Payment[]
+  members         BookingMember[]
+}
+
+model BookingMember {
+  id             String   @id @default(cuid())
+  booking        Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId      String
+  name           String
+  phone          String
+  nid            String?
+  passportNumber String?
+  passportExpiry String?
+  notes          String?
+  createdAt      DateTime @default(now())
 }
 
 model Flight {

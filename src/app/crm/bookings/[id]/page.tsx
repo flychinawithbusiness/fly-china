@@ -18,6 +18,7 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
       hotels: { include: { hotel: true } },
       transports: true,
       meals: { include: { restaurant: true }, orderBy: { date: "asc" } },
+      members: { orderBy: { createdAt: "asc" } },
     }
   })
   if (!booking) notFound()
@@ -65,6 +66,42 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
             <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 700, fontSize: "1.75rem", color: s.color }}>{s.value}</div>
           </div>
         ))}
+      </div>
+
+      {/* Group Members */}
+      <div style={{ background: "white", borderRadius: 20, padding: "1.5rem", border: "1px solid rgba(28,58,107,0.07)", boxShadow: "0 4px 16px rgba(28,58,107,0.06)", marginBottom: "1.5rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0 }}>👥 Group Members <span style={{ color: "#9CA3AF", fontWeight: 500 }}>({booking.members.length})</span></h3>
+          <Link href={`/crm/bookings/${id}/members/new`} style={{ background: "linear-gradient(135deg, #1C3A6B, #2A5099)", color: "white", textDecoration: "none", padding: "0.45rem 1rem", borderRadius: 10, fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "0.8rem", boxShadow: "0 4px 12px rgba(28,58,107,0.3)" }}>+ Add Member</Link>
+        </div>
+        {booking.members.length === 0 ? (
+          <p style={{ color: "#9CA3AF", fontSize: "0.8rem", fontFamily: "var(--font-body)", margin: 0 }}>No members added yet.</p>
+        ) : (
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
+              <tr style={{ borderBottom: "1px solid #F3F4F6" }}>
+                {["#", "Name", "Phone", "NID", "Passport No.", "Expiry", ""].map(h => (
+                  <th key={h} style={{ padding: "0.5rem 0.75rem", textAlign: "left", fontSize: "0.72rem", color: "#6B7280", fontFamily: "var(--font-body)", fontWeight: 600 }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {booking.members.map((m, i) => (
+                <tr key={m.id} style={{ borderBottom: "1px solid #F9FAFB" }}>
+                  <td style={{ padding: "0.65rem 0.75rem", fontSize: "0.8rem", color: "#9CA3AF", fontFamily: "var(--font-body)" }}>{i + 1}</td>
+                  <td style={{ padding: "0.65rem 0.75rem", fontSize: "0.8rem", fontWeight: 600, color: "#111827", fontFamily: "var(--font-body)" }}>{m.name}</td>
+                  <td style={{ padding: "0.65rem 0.75rem", fontSize: "0.8rem", color: "#374151", fontFamily: "var(--font-body)" }}>{m.phone}</td>
+                  <td style={{ padding: "0.65rem 0.75rem", fontSize: "0.8rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{m.nid || "-"}</td>
+                  <td style={{ padding: "0.65rem 0.75rem", fontSize: "0.8rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{m.passportNumber || "-"}</td>
+                  <td style={{ padding: "0.65rem 0.75rem", fontSize: "0.8rem", color: "#6B7280", fontFamily: "var(--font-body)" }}>{m.passportExpiry || "-"}</td>
+                  <td style={{ padding: "0.65rem 0.75rem" }}>
+                    <Link href={`/crm/bookings/${id}/members/${m.id}/edit`} style={{ color: "#1C3A6B", textDecoration: "none", fontSize: "0.78rem", fontWeight: 600, fontFamily: "var(--font-body)" }}>Edit</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
