@@ -234,7 +234,7 @@ export default function HeroSection() {
           <div
             style={{
               textAlign: "center",
-              marginTop: "-16rem",
+              marginTop: "-10rem",
               width: "100%",
             }}
           >

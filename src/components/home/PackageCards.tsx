@@ -72,9 +72,9 @@ function FeaturedCard({ pkg }: { pkg: Pkg }) {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full">
-        <div className="px-8 pt-8 pb-6">
+        <div className="px-6 pt-6 pb-4">
           {pkg.isPopular && (
-            <span className="inline-flex bg-gold text-navy-dark text-xs font-bold px-3 py-1 rounded-full mb-4">
+            <span className="inline-flex bg-gold text-navy-dark text-xs font-bold px-3 py-1 rounded-full mb-3">
               Most Popular
             </span>
           )}
@@ -83,23 +83,23 @@ function FeaturedCard({ pkg }: { pkg: Pkg }) {
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 700,
-              fontSize: "3rem",
+              fontSize: "2.5rem",
               color: "#fff",
               lineHeight: 1,
             }}
           >
             {pkg.duration} Days
           </div>
-          <p className="text-white/70 text-sm mt-2 font-body">
+          <p className="text-white/70 text-xs mt-2 font-body">
             From {pkg.price} BDT
           </p>
         </div>
-        <div className="px-8 pb-8 flex-1">
+        <div className="px-6 pb-6 flex-1">
           <Inclusions items={pkg.inclusions} variant="featured" />
         </div>
         <Link
           href="/contact"
-          className="mx-8 mb-8 rounded-full bg-gold text-navy-dark font-bold py-3 text-center text-sm hover:bg-yellow-400 transition font-body"
+          className="mx-6 mb-6 rounded-full bg-gold text-navy-dark font-bold py-2.5 text-center text-sm hover:bg-yellow-400 transition font-body"
         >
           Get a Quote
         </Link>
@@ -127,25 +127,25 @@ function PlainCard({ pkg }: { pkg: Pkg }) {
       }}
       className="h-full flex flex-col"
     >
-      <div className="px-8 pt-8 pb-6 border-b border-gray-100">
+      <div className="px-6 pt-6 pb-4 border-b border-gray-100">
         <span
           className="inline-flex bg-[#1C3A6B]/[0.08] text-[#1C3A6B] font-bold px-4 py-1.5 rounded-full mb-3"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
-            fontSize: "1.5rem",
+            fontSize: "1.25rem",
           }}
         >
           {pkg.duration} Days
         </span>
-        <p className="text-[#1C3A6B] font-body text-sm">From {pkg.price} BDT</p>
+        <p className="text-[#1C3A6B] font-body text-xs">From {pkg.price} BDT</p>
       </div>
-      <div className="px-8 pb-8 pt-6 flex-1">
+      <div className="px-6 pb-6 pt-4 flex-1">
         <Inclusions items={pkg.inclusions} variant="plain" />
       </div>
       <Link
         href="/contact"
-        className="mx-8 mb-8 rounded-full bg-[#1C3A6B] text-white font-bold py-3 text-center text-sm hover:bg-[#2A5099] transition font-body"
+        className="mx-6 mb-6 rounded-full bg-[#1C3A6B] text-white font-bold py-2.5 text-center text-sm hover:bg-[#2A5099] transition font-body"
       >
         Get a Quote
       </Link>
@@ -155,11 +155,11 @@ function PlainCard({ pkg }: { pkg: Pkg }) {
 
 export default function PackageCards({ packages }: { packages: Pkg[] }) {
   return (
-    <section className="bg-[#F8F9FB] py-24 px-6">
+    <section className="bg-[#F8F9FB] py-14 px-6">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <FadeIn>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <p className="text-xs tracking-widest text-gold uppercase font-body font-semibold">
               Our Packages
             </p>
@@ -187,7 +187,7 @@ export default function PackageCards({ packages }: { packages: Pkg[] }) {
             Tour packages coming soon.
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
             {packages.map((pkg, i) => (
               <FadeIn key={pkg.id} delay={i * 0.15}>
                 {i === 0 ? (

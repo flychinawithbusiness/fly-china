@@ -66,7 +66,12 @@ function WhyCard({
 
 export default function WhyFlyChina() {
   return (
-    <section className="bg-white py-24 px-6">
+    <section
+      className="py-24 px-6"
+      style={{
+        background: "linear-gradient(180deg, #F8F9FB 0%, #EEF2F8 100%)",
+      }}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <FadeIn>

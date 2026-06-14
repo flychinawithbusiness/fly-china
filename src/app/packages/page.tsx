@@ -37,17 +37,45 @@ export default async function PackagesPage() {
       </section>
 
       {/* What's NOT included */}
-      <section className="bg-white py-16 px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-light text-[#1C3A6B] mb-6">
+      <section className="bg-white py-16 px-6">
+        <div
+          className="max-w-2xl mx-auto text-center"
+          style={{
+            background: "linear-gradient(135deg, #1C3A6B, #0A1628)",
+            borderRadius: 20,
+            padding: "2.5rem",
+          }}
+        >
+          <h2
+            className="mb-6"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 700,
+              fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+              color: "#ffffff",
+            }}
+          >
             Not Included in Package
           </h2>
-          <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-gray-500 mb-6">
+          <ul className="flex flex-wrap justify-center gap-2 mb-6">
             {NOT_INCLUDED.map((item) => (
-              <li key={item}>{item}</li>
+              <li
+                key={item}
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                  color: "white",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: 999,
+                  padding: "0.4rem 1rem",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {item}
+              </li>
             ))}
           </ul>
-          <p className="text-gray-400 text-sm">
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
             We can assist with visa applications and travel insurance
             arrangements.
           </p>
