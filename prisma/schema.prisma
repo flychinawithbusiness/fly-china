@@ -82,3 +82,180 @@ model Inquiry {
   status    String   @default("new")
   createdAt DateTime @default(now())
 }
+
+// ─────────────────────────────────────────────────────────────
+// CRM models
+// ─────────────────────────────────────────────────────────────
+
+model CrmEmployee {
+  id           String        @id @default(cuid())
+  name         String
+  email        String        @unique
+  password     String
+  phone        String?
+  role         String        @default("employee") // "admin" | "employee"
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Customer {
+  id             String    @id @default(cuid())
+  name           String
+  phone          String
+  email          String?
+  nid            String?
+  passportNumber String?
+  passportExpiry DateTime?
+  passportImage  String?
+  nidImage       String?
+  photo          String?
+  address        String?
+  notes          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  bookings       Booking[]
+}
+
+model Booking {
+  id            String    @id @default(cuid())
+  bookingNumber String    @unique @default(cuid())
+  customer      Customer  @relation(fields: [customerId], references: [id])
+  customerId    String
+  packageName   String
+  packageDays   Int
+  tourStartDate DateTime
+  tourEndDate   DateTime
+  groupSize     Int       @default(1)
+  status        String    @default("inquiry")
+  // inquiry | confirmed | in_progress | completed | cancelled
+  totalAmount   Float     @default(0)
+  paidAmount    Float     @default(0)
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  flights         Flight[]
+  hotels          HotelBooking[]
+  meals           MealSchedule[]
+  transports      Transport[]
+  guideAssignment GuideAssignment?
+  payments        Payment[]
+}
+
+model Flight {
+  id            String   @id @default(cuid())
+  booking       Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId     String
+  type          String // "departure" | "return"
+  airline       String
+  flightNumber  String
+  departureFrom String
+  departureTo   String
+  departureTime DateTime
+  arrivalTime   DateTime
+  transitPoints String? // JSON string of transit stops
+  createdAt     DateTime @default(now())
+}
+
+model Guide {
+  id          String            @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  language    String            @default("Bangla, English, Chinese")
+  speciality  String?
+  isActive    Boolean           @default(true)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  assignments GuideAssignment[]
+}
+
+model GuideAssignment {
+  id        String   @id @default(cuid())
+  booking   Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId String   @unique
+  guide     Guide    @relation(fields: [guideId], references: [id])
+  guideId   String
+  rating    Int? // 1-5
+  review    String?
+  createdAt DateTime @default(now())
+}
+
+model Hotel {
+  id        String         @id @default(cuid())
+  name      String
+  location  String
+  address   String?
+  phone     String?
+  stars     Int            @default(3)
+  notes     String?
+  isActive  Boolean        @default(true)
+  createdAt DateTime       @default(now())
+  bookings  HotelBooking[]
+}
+
+model HotelBooking {
+  id        String   @id @default(cuid())
+  booking   Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId String
+  hotel     Hotel    @relation(fields: [hotelId], references: [id])
+  hotelId   String
+  checkIn   DateTime
+  checkOut  DateTime
+  roomType  String   @default("Standard")
+  rooms     Int      @default(1)
+  price     Float    @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Restaurant {
+  id        String         @id @default(cuid())
+  name      String
+  location  String
+  cuisine   String         @default("Halal")
+  phone     String?
+  notes     String?
+  isActive  Boolean        @default(true)
+  createdAt DateTime       @default(now())
+  meals     MealSchedule[]
+}
+
+model MealSchedule {
+  id           String      @id @default(cuid())
+  booking      Booking     @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId    String
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
+  restaurantId String?
+  date         DateTime
+  mealType     String // "breakfast" | "lunch" | "dinner"
+  notes        String?
+  createdAt    DateTime    @default(now())
+}
+
+model Transport {
+  id              String   @id @default(cuid())
+  booking         Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId       String
+  type            String // "car" | "bus" | "van"
+  provider        String?
+  vehicleNumber   String?
+  pickupLocation  String
+  dropoffLocation String
+  pickupTime      DateTime
+  price           Float    @default(0)
+  notes           String?
+  createdAt       DateTime @default(now())
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  booking   Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId String
+  amount    Float
+  method    String   @default("cash") // "cash" | "bank" | "mobile"
+  reference String?
+  paidAt    DateTime @default(now())
+  notes     String?
+  createdAt DateTime @default(now())
+}
